@@ -12,13 +12,13 @@ namespace marketplace_v4.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarrinhoController : ControllerBase
+    private class CarrinhoController : ControllerBase
     {
         private readonly APIDbContext _context;
         private ICarrinhoManager _carrinhoManager;
 
 
-        public CarrinhoController(APIDbContext context)
+        private CarrinhoController(APIDbContext context)
         {
             _context = context;
             _carrinhoManager = new CarrinhoManager(context);
@@ -27,14 +27,14 @@ namespace marketplace_v4.Controllers
 
         // GET: api/Carrinho
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Carrinho>>> GetCarrinho()
+        private async Task<ActionResult<IEnumerable<Carrinho>>> GetCarrinho()
         {
             return await _context.Carrinho.Include(c => c.Cliente).Include(c => c.Produtos).ToListAsync();
         }
 
         // GET: api/Carrinho/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Carrinho>> GetCarrinho(int id)
+        private async Task<ActionResult<Carrinho>> GetCarrinho(int id)
         {
             var carrinho = await _context.Carrinho
                 .Include(c => c.Cliente)
@@ -51,7 +51,7 @@ namespace marketplace_v4.Controllers
 
         // PUT: api/Carrinho/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCarrinho(int id, Carrinho carrinho)
+        private async Task<IActionResult> PutCarrinho(int id, Carrinho carrinho)
         {
             if (id != carrinho.Id)
             {
@@ -81,7 +81,7 @@ namespace marketplace_v4.Controllers
 
         // POST: api/Carrinho
         [HttpPost]
-        public IActionResult Create(Carrinho carrinho)
+        private IActionResult Create(Carrinho carrinho)
         {
             _carrinhoManager.Add(carrinho);
             return CreatedAtAction("GetCarrinho", new { id = carrinho.Id }, carrinho);
@@ -89,7 +89,7 @@ namespace marketplace_v4.Controllers
 
         // DELETE: api/Carrinho/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCarrinho(int id)
+        private async Task<IActionResult> DeleteCarrinho(int id)
         {
             var carrinho = await _context.Carrinho.FindAsync(id);
             if (carrinho == null)
