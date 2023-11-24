@@ -1,4 +1,6 @@
 ﻿using marketplace_v4.Data;
+using marketplace_v4.Interfaces.Manager;
+using marketplace_v4.Manager;
 using marketplace_v4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,14 @@ namespace marketplace_v4.Controllers
     public class CategoriaController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private ICategoriaManager _categoriaManager;
+
 
         public CategoriaController(APIDbContext context)
         {
             _context = context;
+            _categoriaManager = new CategoriaManager(context);
+
         }
 
         // GET: api/Categoria
@@ -73,11 +79,9 @@ namespace marketplace_v4.Controllers
 
         // POST: api/Categoria
         [HttpPost]
-        public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)
+        public IActionResult Create(Categoria categoria)
         {
-            _context.Categoria.Add(categoria);
-            await _context.SaveChangesAsync();
-
+            _categoriaManager.Add(categoria);
             return CreatedAtAction("GetCategoria", new { id = categoria.Id }, categoria);
         }
 

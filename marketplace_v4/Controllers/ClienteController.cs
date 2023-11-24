@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using marketplace_v4.Data; // Substitua pelo namespace correto onde está o seu contexto do banco de dados
 using marketplace_v4.Models;
+using marketplace_v4.Interfaces.Manager;
+using marketplace_v4.Manager;
 
 namespace marketplace_v4.Controllers
 {
@@ -11,10 +13,12 @@ namespace marketplace_v4.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private IClienteManager _clienteManager;
 
         public ClienteController(APIDbContext context)
         {
             _context = context;
+            _clienteManager=new ClienteManager(context);
         }
 
         // GET: api/Cliente
@@ -70,11 +74,9 @@ namespace marketplace_v4.Controllers
 
         // POST: api/Cliente
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
+        public IActionResult Create(Cliente cliente)
         {
-            _context.Cliente.Add(cliente);
-            await _context.SaveChangesAsync();
-
+            _clienteManager.Add(cliente);
             return CreatedAtAction("GetCliente", new { id = cliente.Id }, cliente);
         }
 

@@ -1,4 +1,6 @@
 ﻿using marketplace_v4.Data;
+using marketplace_v4.Interfaces.Manager;
+using marketplace_v4.Manager;
 using marketplace_v4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +13,15 @@ namespace marketplace_v4.Controllers
     public class VendedorController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private IVendedorManager _vendedorManager;
+
+
 
         public VendedorController(APIDbContext context)
         {
             _context = context;
+            _vendedorManager = new VendedorManager(context);
+
         }
 
         // GET: api/Vendedor
@@ -70,11 +77,9 @@ namespace marketplace_v4.Controllers
 
         // POST: api/Vendedor
         [HttpPost]
-        public async Task<ActionResult<Vendedor>> PostVendedor(Vendedor vendedor)
+        public IActionResult Create(Vendedor vendedor)
         {
-            _context.Vendedor.Add(vendedor);
-            await _context.SaveChangesAsync();
-
+            _vendedorManager.Add(vendedor);
             return CreatedAtAction("GetVendedor", new { id = vendedor.Id }, vendedor);
         }
 

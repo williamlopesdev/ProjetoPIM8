@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\Manager\ICarrinho.cs" />
+    <Compile Remove="Interfaces\Manager\ICategoria.cs" />
+    <Compile Remove="Interfaces\Manager\IEndereco.cs" />
+    <Compile Remove="Interfaces\Manager\IItem_Carrinho.cs" />
+    <Compile Remove="Interfaces\Manager\IProduto.cs" />
+    <Compile Remove="Interfaces\Manager\IVendedor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EF.Core.Repository" Version="1.0.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
       <PrivateAssets>all</PrivateAssets>

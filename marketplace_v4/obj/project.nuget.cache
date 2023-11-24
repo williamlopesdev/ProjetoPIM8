@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4cuhe10JwDSuASwzC0bG/P4iOkuNhB76N9OP8sNRa9u5w5wpHc6xQZ5iF2o/3i75dgUTO+1mLtjUKGHYDvIXCg==",
+  "dgSpecHash": "e1SSp7JWVV42BcOFvX5I7m3XPBWbCEkjKEPMV9mcpov9vNBTQjVMffQX19RlGhDKUN+iJVWwGumIHFr6RQ5G3Q==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\PIMVIII\\marketplace_v4\\marketplace_v4\\marketplace_v4.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Win10\\.nuget\\packages\\ef.core.repository\\1.0.0.1\\ef.core.repository.1.0.0.1.nupkg.sha512",
     "C:\\Users\\Win10\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Win10\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Win10\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

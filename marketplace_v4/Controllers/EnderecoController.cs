@@ -1,4 +1,6 @@
 ﻿using marketplace_v4.Data;
+using marketplace_v4.Interfaces.Manager;
+using marketplace_v4.Manager;
 using marketplace_v4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +17,13 @@ namespace marketplace_v4.Controllers
     {
 
         private readonly APIDbContext _context;
+        private IEnderecoManager _enderecoManager;
+
         public EnderecoController(APIDbContext context)
         {
             _context = context;
+            _enderecoManager = new EnderecoManager(context);
+
         }
 
         // GET: api/Endereco
@@ -73,11 +79,9 @@ namespace marketplace_v4.Controllers
 
         // POST: api/Endereco
         [HttpPost]
-        public async Task<ActionResult<Endereco>> PostEndereco(Endereco endereco)
+        public IActionResult Create(Endereco endereco)
         {
-            _context.Endereco.Add(endereco);
-            await _context.SaveChangesAsync();
-
+            _enderecoManager.Add(endereco);
             return CreatedAtAction("GetEndereco", new { id = endereco.Id }, endereco);
         }
 

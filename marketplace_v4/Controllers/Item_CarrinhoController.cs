@@ -1,4 +1,6 @@
 ﻿using marketplace_v4.Data;
+using marketplace_v4.Interfaces.Manager;
+using marketplace_v4.Manager;
 using marketplace_v4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +13,13 @@ namespace marketplace_v4.Controllers
     public class Item_CarrinhoController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private IItem_CarrinhoManager _item_CarrinhoManager;
+
 
         public Item_CarrinhoController(APIDbContext context)
         {
             _context = context;
+            _item_CarrinhoManager = new Item_CarrinhoManager(context);
         }
 
         // GET: api/ItemCarrinho
@@ -70,12 +75,10 @@ namespace marketplace_v4.Controllers
 
         // POST: api/ItemCarrinho
         [HttpPost]
-        public async Task<ActionResult<Item_Carrinho>> PostItemCarrinho(Item_Carrinho itemCarrinho)
+        public IActionResult Create(Item_Carrinho item_Carrinho)
         {
-            _context.Item_Carrinho.Add(itemCarrinho);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetItemCarrinho", new { id = itemCarrinho.Carrinho_Id }, itemCarrinho);
+            _item_CarrinhoManager.Add(item_Carrinho);
+            return CreatedAtAction("GetItem_Carrinho", new { id = item_Carrinho.Carrinho_Id }, item_Carrinho);
         }
 
         // DELETE: api/ItemCarrinho/5

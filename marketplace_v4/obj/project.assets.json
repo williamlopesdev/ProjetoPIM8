@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "EF.Core.Repository/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.10"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/EntityFrameworkCore.Repository.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/EntityFrameworkCore.Repository.dll": {}
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -3583,6 +3595,22 @@
     }
   },
   "libraries": {
+    "EF.Core.Repository/1.0.0.1": {
+      "sha512": "oy4rKoSxsjXVulQE5+xfzrVG6GGDYqgzPkWdTXKG25soO26xKDDeJboLSYKcwiMiX1R3XixwLI7Irr6PY97AYA==",
+      "type": "package",
+      "path": "ef.core.repository/1.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ef.core.repository.1.0.0.1.nupkg.sha512",
+        "ef.core.repository.nuspec",
+        "lib/netcoreapp2.0/EntityFrameworkCore.Repository.dll",
+        "lib/netcoreapp2.1/EntityFrameworkCore.Repository.dll",
+        "lib/netcoreapp2.2/EntityFrameworkCore.Repository.dll",
+        "lib/netcoreapp3.0/EntityFrameworkCore.Repository.dll",
+        "lib/netcoreapp3.1/EntityFrameworkCore.Repository.dll"
+      ]
+    },
     "Humanizer/2.14.1": {
       "sha512": "/FUTD3cEceAAmJSCPN9+J+VhGwmL/C12jvwlyM1DFXShEMsBzvLzLqSrJ2rb+k/W2znKw7JyflZgZpyE+tI7lA==",
       "type": "package",
@@ -10650,6 +10678,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "EF.Core.Repository >= 1.0.0.1",
       "Microsoft.EntityFrameworkCore >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.14",
@@ -10703,6 +10732,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "EF.Core.Repository": {
+            "target": "Package",
+            "version": "[1.0.0.1, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.14, )"

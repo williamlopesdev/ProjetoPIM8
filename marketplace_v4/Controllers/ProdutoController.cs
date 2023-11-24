@@ -1,4 +1,6 @@
 ﻿using marketplace_v4.Data;
+using marketplace_v4.Interfaces.Manager;
+using marketplace_v4.Manager;
 using marketplace_v4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +13,12 @@ namespace marketplace_v4.Controllers
     public class ProdutoController : ControllerBase
     {
         private readonly APIDbContext _context;
+        private IProdutoManager _produtoManager;
 
         public ProdutoController(APIDbContext context)
         {
             _context = context;
+            _produtoManager = new ProdutoManager(context);
         }
 
         // GET: api/Produto
@@ -73,11 +77,9 @@ namespace marketplace_v4.Controllers
 
         // POST: api/Produto
         [HttpPost]
-        public async Task<ActionResult<Produto>> PostProduto(Produto produto)
+        public IActionResult Create(Produto produto)
         {
-            _context.Produto.Add(produto);
-            await _context.SaveChangesAsync();
-
+            _produtoManager.Add(produto);
             return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
         }
 
